@@ -3,25 +3,25 @@ apply plugin: 'com.android.application'
 android {
     signingConfigs {
         config {
-            keyAlias 'gujian'
+            keyAlias 'daofeng_tc'
             keyPassword '123456'
-            storeFile file('F:/Program/sort/keystore')
+            storeFile file('F:/Program/sort/daofeng_tc.keystore')
             storePassword '123456'
         }
     }
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.gentop.ltgame.ltgamesdkdemo"
+        applicationId "com.ltgame.thelastknight"
         minSdkVersion 15
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 101
+        versionName "1.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
         manifestPlaceholders = [Facebook_app_id         : "347759105952557",
                                 fb_login_protocol_scheme: "ff5ee3b4135241962b10eecb4eeab15f",
                                 QQAppID         : "1108097616"]
-
+        multiDexEnabled true
         javaCompileOptions {
             annotationProcessorOptions {
                 includeCompileClasspath false
@@ -49,17 +49,18 @@ android {
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.muyishuangfeng:LTGameSDKGoogle-Android:1.0.5'
-    implementation 'com.github.muyishuangfeng:LTGameSDKGooglePlay-Android:1.0.4'
-    implementation 'com.github.muyishuangfeng:LTGameSDKFacebook-Android:1.0.3'
-    implementation 'com.github.muyishuangfeng:LTGameSDKOneStore-Android:1.0.3'
-    implementation 'com.github.muyishuangfeng:LTGameSDKPhone-Android:1.0.0'
-    implementation 'com.github.muyishuangfeng:LTGameSDKQQ-Android:1.0.0'
-
+    implementation 'com.github.muyishuangfeng:LTGameSDKGoogle-Android:1.0.8'
+    implementation 'com.github.muyishuangfeng:LTGameSDKGooglePlay-Android:1.0.5'
+    implementation 'com.github.muyishuangfeng:LTGameSDKFacebook-Android:1.1.0'
+    implementation 'com.github.muyishuangfeng:LTGameSDKOneStore-Android:1.0.4'
+    implementation 'com.github.muyishuangfeng:LTGameSDKPhone-Android:1.0.1'
+    implementation 'com.github.muyishuangfeng:LTGameSDKQQ-Android:1.0.1'
+    //方法数超过65535
+    implementation 'com.android.support:multidex:1.0.3'
 }

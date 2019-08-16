@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">LTGameSDK</string>
+    <string name="app_name">LTGameSDKDemo</string>
     <string name="text_cancel">取消</string>
     <string name="text_confirm">确认</string>
+    <string name="ltgame_google_iab_key">MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAlVay75qC+dKVky9oBFpm0QYPHsF5yuvjbli+h98Pbpwt9z5pXmlfBG1J68uto/eMn+6PipSIc5txplGnolrJC0A7LvMz8vgh9ashj89AwGih+m4uqcacEJgYfU93d/JQo3+IcavndGdITbZGhzH/EfQbz3CV9/hoLl2I5bvdBr7dwbNt3M/je1m/Vw9NbmZoUvKRmmxU/qmDIvmA63md7KU8DAKLH/QOfZCdQQdiWvwfzO2bvkP/jCcSRFvWLo4vQBXiBDKgVXzW0DNk7OP4DrBOxxnQNCh5+pwR0vGXFTPohlR1bB19k8l46C9ffilwspAUL8FUTGcVvtYQgH/sSwIDAQAB</string>
+    <string name="ltgame_facebook_id">625152811340269</string>
 </resources>

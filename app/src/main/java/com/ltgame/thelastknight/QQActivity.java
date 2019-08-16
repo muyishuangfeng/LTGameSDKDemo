@@ -1,4 +1,4 @@
-package com.gentop.ltgame.ltgamesdkdemo;
+package com.ltgame.thelastknight;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -20,48 +20,58 @@ import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
 
 import java.util.concurrent.Executors;
 
-public class FacebookActivity extends AppCompatActivity {
+public class QQActivity extends AppCompatActivity {
 
-    Button mBtnStart;
+    Button mBtnLogin, mBtnLoginOut;
     TextView mTxtResult;
-    private static final int REQUEST_CODE = 0x01;
     String LTAppID = "20001";
     String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
-    String TAG = "FacebookActivity";
-    String mPackageID = "com.ltgames.yyjw.google";
+    String TAG = "QQActivity";
     String mAdID;
     String baseUrl = "http://sdk.aktgo.com";
-    String mFacebookId = "20001";
     private OnLoginStateListener mOnLoginListener;
-
+    String mQQAppID = "1108097616";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_google);
+        setContentView(R.layout.activity_qq);
         initView();
         initData();
     }
 
     private void initView() {
         mTxtResult = findViewById(R.id.txt_result);
-        mBtnStart = findViewById(R.id.btn_start);
-        mBtnStart.setOnClickListener(new View.OnClickListener() {
+        mBtnLoginOut = findViewById(R.id.btn_loginOut);
+        mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginObject object = new LoginObject();
                 object.setBaseUrl(baseUrl);
-                object.setFacebookAppID(mFacebookId);
                 object.setmAdID(mAdID);
                 object.setLTAppID(LTAppID);
                 object.setLTAppKey(LTAppKey);
-                object.setSelfRequestCode(REQUEST_CODE);
-                object.setLoginOut(false);
-                object.setmPackageID(mPackageID);
-                LoginManager.login(FacebookActivity.this, Target.LOGIN_FACEBOOK, object, mOnLoginListener);
+                object.setQqAppID(mQQAppID);
+                object.setLoginOut(true);
+                LoginManager.login(QQActivity.this, Target.LOGIN_QQ, object, mOnLoginListener);
 
             }
         });
+        mBtnLogin = findViewById(R.id.btn_login);
+        mBtnLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginObject object = new LoginObject();
+                object.setBaseUrl(baseUrl);
+                object.setmAdID(mAdID);
+                object.setLTAppID(LTAppID);
+                object.setLTAppKey(LTAppKey);
+                object.setQqAppID(mQQAppID);
+                object.setLoginOut(false);
+                LoginManager.login(QQActivity.this, Target.LOGIN_QQ, object, mOnLoginListener);
+            }
+        });
+
     }
 
 
@@ -91,6 +101,15 @@ public class FacebookActivity extends AppCompatActivity {
                         Log.e(TAG, result.getResultModel().toString());
                         mTxtResult.setText(result.getResultModel().toString());
                         break;
+
+                    case LoginResult.STATE_FAIL:
+                        Log.e(TAG,result.getError().toString());
+                        Log.e(TAG, "STATE_FAIL");
+                        break;
+                    case LoginResult.STATE_CANCEL:
+                        Log.e(TAG, "STATE_FAIL");
+                        break;
+
                 }
             }
 
@@ -104,14 +123,9 @@ public class FacebookActivity extends AppCompatActivity {
                 .appKey(LTAppKey)
                 .baseUrl(baseUrl)
                 .setAdID(mAdID)
-                .packageID(mPackageID)
-                .facebookEnable()
-                .facebook(mFacebookId)
-                .requestCode(REQUEST_CODE)
+                .setQQEnable(true)
+                .qq(mQQAppID)
                 .build();
         LTGameSdk.init(options);
     }
-
-
-
 }

@@ -1,4 +1,4 @@
-package com.gentop.ltgame.ltgamesdkdemo;
+package com.ltgame.thelastknight;
 
 import android.annotation.SuppressLint;
 import android.graphics.Bitmap;

@@ -1,4 +1,4 @@
-package com.gentop.ltgame.ltgamesdkdemo;
+package com.ltgame.thelastknight;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,7 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
+import android.widget.Toast;
 
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
@@ -18,36 +18,44 @@ import com.gentop.ltgame.ltgamesdkcore.manager.LoginManager;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginObject;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginResult;
 import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
+import com.sdk.ltgame.ltgoogle.GooglePlatform;
+import com.sdk.ltgame.ltgoogle.uikit.GoogleLoginActivity;
 
 import java.util.concurrent.Executors;
 
-public class PhoneActivity extends AppCompatActivity {
+public class GoogleActivity extends AppCompatActivity {
 
-
-    Button mBtnLogin, mBtnRegister, mBtnChange;
+    Button mBtnStart, mBtnLoginOut;
     TextView mTxtResult;
-    String LTAppID = "20001";
-    String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
-    String TAG = "PhoneActivity";
+    private static final int REQUEST_CODE = 0x01;
+    String LTAppKey = "ATGhGUQ3VbptAf5qq544njqBAK2TGKdz";
+    String LTAppID = "28571";
+    //    String LTAppID = "20001";
+//    String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
+    String TAG = "GooglePlayActivity";
+    //String clientID = "182767183123-v2l0sd2cs67ob9bet6bql80cuel09445.apps.googleusercontent.com";
+    String clientID = "491715152271-lli7bduussokgt43cup0frsrl5k5un9s.apps.googleusercontent.com";
+    // String mPackageID = "com.ltgames.yyjw.google";
+    String mPackageID = "com.ltgame.thelastknight";
     String mAdID;
-    String baseUrl = "http://sdk.aktgo.com";
+    String baseUrl = "http://login.gdpgold.com";
+    //String baseUrl = "http://sdk.aktgo.com";
     private OnLoginStateListener mOnLoginListener;
-    String mPhone = "18302949079";
-    String mPassword = "123456789";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_phone);
+        setContentView(R.layout.activity_google);
         initView();
         initData();
     }
 
     private void initView() {
         mTxtResult = findViewById(R.id.txt_result);
-        mBtnChange = findViewById(R.id.btn_change);
-        mBtnChange.setOnClickListener(new View.OnClickListener() {
+        mBtnStart = findViewById(R.id.btn_start);
+        mBtnLoginOut = findViewById(R.id.btn_loginOut);
+        mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginObject object = new LoginObject();
@@ -55,41 +63,27 @@ public class PhoneActivity extends AppCompatActivity {
                 object.setmAdID(mAdID);
                 object.setLTAppID(LTAppID);
                 object.setLTAppKey(LTAppKey);
-                object.setmPhone(mPhone);
-                object.setmPassword("123456789");
-                object.setmLoginCode("3");
-                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
+                object.setmGoogleClient(clientID);
+                object.setSelfRequestCode(REQUEST_CODE);
+                object.setLoginOut(false);
+                object.setmPackageID(mPackageID);
+                LoginManager.login(GoogleActivity.this, Target.LOGIN_GOOGLE, object, mOnLoginListener);
+            }
+        });
+        mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginObject object = new LoginObject();
+                object.setBaseUrl(baseUrl);
+                object.setmAdID(mAdID);
+                object.setLTAppID(LTAppID);
+                object.setLTAppKey(LTAppKey);
+                object.setmGoogleClient(clientID);
+                object.setSelfRequestCode(REQUEST_CODE);
+                object.setLoginOut(true);
+                object.setmPackageID(mPackageID);
+                LoginManager.login(GoogleActivity.this, Target.LOGIN_GOOGLE, object, mOnLoginListener);
 
-            }
-        });
-        mBtnLogin = findViewById(R.id.btn_login);
-        mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setmPhone(mPhone);
-                object.setmPassword(mPassword);
-                object.setmLoginCode("2");
-                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
-            }
-        });
-        mBtnRegister = findViewById(R.id.btn_register);
-        mBtnRegister.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setmPhone(mPhone);
-                object.setmPassword(mPassword);
-                object.setmLoginCode("1");
-                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
             }
         });
     }
@@ -118,14 +112,17 @@ public class PhoneActivity extends AppCompatActivity {
             public void onState(Activity activity, LoginResult result) {
                 switch (result.state) {
                     case LoginResult.STATE_SUCCESS:
-                        Log.e(TAG, result.getResultModel().toString());
-                        mTxtResult.setText(result.getResultModel().toString());
+                        if (result.getResultModel() != null) {
+                            Log.e(TAG, result.getResultModel().toString());
+                            mTxtResult.setText(result.getResultModel().toString());
+                        }
                         break;
-
-                    case LoginResult.STATE_FAIL:
-                        Log.e(TAG, "STATE_FAIL");
+                    case LoginResult.STATE_LOGIN_OUT:
+                        if (result.getError().getMsg() != null) {
+                            Toast.makeText(GoogleActivity.this, result.getError().getMsg(), Toast.LENGTH_SHORT).show();
+                            mTxtResult.setText(result.getError().getMsg());
+                        }
                         break;
-
                 }
             }
 
@@ -139,11 +136,12 @@ public class PhoneActivity extends AppCompatActivity {
                 .appKey(LTAppKey)
                 .baseUrl(baseUrl)
                 .setAdID(mAdID)
-                .loginCode("1")
-                .phoneAndPass(mPhone, mPassword)
-                .phoneEnable()
+                .packageID(mPackageID)
+                .google(clientID)
+                .requestCode(REQUEST_CODE)
                 .build();
         LTGameSdk.init(options);
     }
+
 
 }

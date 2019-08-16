@@ -12,8 +12,7 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:text="Start"
-        android:textAllCaps="false"
-        android:visibility="gone" />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn_google"

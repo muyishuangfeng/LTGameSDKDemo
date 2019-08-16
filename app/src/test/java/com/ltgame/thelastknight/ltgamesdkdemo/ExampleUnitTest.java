@@ -1,4 +1,4 @@
-package com.gentop.ltgame.ltgamesdkdemo;
+package com.ltgame.thelastknight.ltgamesdkdemo;
 
 import org.junit.Test;
 

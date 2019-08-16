@@ -1,4 +1,4 @@
-package com.gentop.ltgame.ltgamesdkdemo;
+package com.ltgame.thelastknight;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-
 
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
@@ -21,30 +20,33 @@ import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
 
 import java.util.concurrent.Executors;
 
-public class QQActivity extends AppCompatActivity {
+public class PhoneActivity extends AppCompatActivity {
 
-    Button mBtnLogin, mBtnLoginOut;
+
+    Button mBtnLogin, mBtnRegister, mBtnChange;
     TextView mTxtResult;
     String LTAppID = "20001";
     String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
-    String TAG = "QQActivity";
+    String TAG = "PhoneActivity";
     String mAdID;
     String baseUrl = "http://sdk.aktgo.com";
     private OnLoginStateListener mOnLoginListener;
-    String mQQAppID = "1108097616";
+    String mPhone = "18302949079";
+    String mPassword = "123456789";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_qq);
+        setContentView(R.layout.activity_phone);
         initView();
         initData();
     }
 
     private void initView() {
         mTxtResult = findViewById(R.id.txt_result);
-        mBtnLoginOut = findViewById(R.id.btn_loginOut);
-        mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
+        mBtnChange = findViewById(R.id.btn_change);
+        mBtnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 LoginObject object = new LoginObject();
@@ -52,9 +54,10 @@ public class QQActivity extends AppCompatActivity {
                 object.setmAdID(mAdID);
                 object.setLTAppID(LTAppID);
                 object.setLTAppKey(LTAppKey);
-                object.setQqAppID(mQQAppID);
-                object.setLoginOut(true);
-                LoginManager.login(QQActivity.this, Target.LOGIN_QQ, object, mOnLoginListener);
+                object.setmPhone(mPhone);
+                object.setmPassword("123456789");
+                object.setmLoginCode("3");
+                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
 
             }
         });
@@ -67,12 +70,27 @@ public class QQActivity extends AppCompatActivity {
                 object.setmAdID(mAdID);
                 object.setLTAppID(LTAppID);
                 object.setLTAppKey(LTAppKey);
-                object.setQqAppID(mQQAppID);
-                object.setLoginOut(false);
-                LoginManager.login(QQActivity.this, Target.LOGIN_QQ, object, mOnLoginListener);
+                object.setmPhone(mPhone);
+                object.setmPassword(mPassword);
+                object.setmLoginCode("2");
+                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
             }
         });
-
+        mBtnRegister = findViewById(R.id.btn_register);
+        mBtnRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginObject object = new LoginObject();
+                object.setBaseUrl(baseUrl);
+                object.setmAdID(mAdID);
+                object.setLTAppID(LTAppID);
+                object.setLTAppKey(LTAppKey);
+                object.setmPhone(mPhone);
+                object.setmPassword(mPassword);
+                object.setmLoginCode("1");
+                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
+            }
+        });
     }
 
 
@@ -104,10 +122,6 @@ public class QQActivity extends AppCompatActivity {
                         break;
 
                     case LoginResult.STATE_FAIL:
-                        Log.e(TAG,result.getError().toString());
-                        Log.e(TAG, "STATE_FAIL");
-                        break;
-                    case LoginResult.STATE_CANCEL:
                         Log.e(TAG, "STATE_FAIL");
                         break;
 
@@ -124,9 +138,11 @@ public class QQActivity extends AppCompatActivity {
                 .appKey(LTAppKey)
                 .baseUrl(baseUrl)
                 .setAdID(mAdID)
-                .setQQEnable(true)
-                .qq(mQQAppID)
+                .loginCode("1")
+                .phoneAndPass(mPhone, mPassword)
+                .phoneEnable()
                 .build();
         LTGameSdk.init(options);
     }
+
 }
