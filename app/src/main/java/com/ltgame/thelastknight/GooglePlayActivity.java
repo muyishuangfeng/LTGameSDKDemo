@@ -43,7 +43,6 @@ public class GooglePlayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_play);
-
         initView();
         init();
     }
@@ -105,6 +104,5 @@ public class GooglePlayActivity extends AppCompatActivity {
                     break;
             }
         }
-
     };
 }
