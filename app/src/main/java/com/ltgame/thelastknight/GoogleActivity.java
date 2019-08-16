@@ -20,12 +20,14 @@ import com.gentop.ltgame.ltgamesdkcore.model.LoginResult;
 import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
 import com.sdk.ltgame.ltgoogle.GooglePlatform;
 import com.sdk.ltgame.ltgoogle.uikit.GoogleLoginActivity;
+import com.sdk.ltgame.ltnet.impl.OnAutoCheckLoginListener;
+import com.sdk.ltgame.ltnet.manager.LoginRealizeManager;
 
 import java.util.concurrent.Executors;
 
 public class GoogleActivity extends AppCompatActivity {
 
-    Button mBtnStart, mBtnLoginOut;
+    Button mBtnStart, mBtnLoginOut,mBtnAuto;
     TextView mTxtResult;
     private static final int REQUEST_CODE = 0x01;
     String LTAppKey = "ATGhGUQ3VbptAf5qq544njqBAK2TGKdz";
@@ -41,6 +43,7 @@ public class GoogleActivity extends AppCompatActivity {
     String baseUrl = "http://login.gdpgold.com";
     //String baseUrl = "http://sdk.aktgo.com";
     private OnLoginStateListener mOnLoginListener;
+    String mLtToken,mLtId;
 
 
     @Override
@@ -54,6 +57,7 @@ public class GoogleActivity extends AppCompatActivity {
     private void initView() {
         mTxtResult = findViewById(R.id.txt_result);
         mBtnStart = findViewById(R.id.btn_start);
+        mBtnAuto = findViewById(R.id.btn_auto);
         mBtnLoginOut = findViewById(R.id.btn_loginOut);
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +90,26 @@ public class GoogleActivity extends AppCompatActivity {
 
             }
         });
+        mBtnAuto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginRealizeManager.autoLoginCheck( baseUrl, LTAppID,
+                        LTAppKey, mLtId, mLtToken, mPackageID,
+                        new OnAutoCheckLoginListener() {
+                            @Override
+                            public void onCheckedSuccess(String result) {
+                                Log.e("TAG",result);
+                                mTxtResult.setText(result);
+                            }
+
+                            @Override
+                            public void onCheckedFailed(String failed) {
+                                Log.e("TAG",failed);
+                            }
+                        });
+
+            }
+        });
     }
 
 
@@ -113,8 +137,9 @@ public class GoogleActivity extends AppCompatActivity {
                 switch (result.state) {
                     case LoginResult.STATE_SUCCESS:
                         if (result.getResultModel() != null) {
-                            Log.e(TAG, result.getResultModel().toString());
-                            mTxtResult.setText(result.getResultModel().toString());
+                            mLtToken=result.getResultModel().getData().getLt_uid_token();
+                            mLtId=result.getResultModel().getData().getLt_uid();
+                            mTxtResult.setText(mLtToken+"===="+mLtId);
                         }
                         break;
                     case LoginResult.STATE_LOGIN_OUT:
