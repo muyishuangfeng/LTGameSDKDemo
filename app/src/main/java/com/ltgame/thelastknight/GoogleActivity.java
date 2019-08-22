@@ -93,7 +93,7 @@ public class GoogleActivity extends AppCompatActivity {
         mBtnAuto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginRealizeManager.autoLoginCheck( baseUrl, LTAppID,
+                LoginRealizeManager.autoLoginCheck(GoogleActivity.this, baseUrl, LTAppID,
                         LTAppKey, mLtId, mLtToken, mPackageID,
                         new OnAutoCheckLoginListener() {
                             @Override
