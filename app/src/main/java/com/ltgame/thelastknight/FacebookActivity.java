@@ -14,6 +14,7 @@ import com.facebook.FacebookSdk;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
 import com.gentop.ltgame.ltgamesdkcore.common.Target;
+import com.gentop.ltgame.ltgamesdkcore.exception.LTGameError;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnLoginStateListener;
 import com.gentop.ltgame.ltgamesdkcore.manager.LoginManager;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginObject;
@@ -116,6 +117,24 @@ public class FacebookActivity extends AppCompatActivity {
                         if (result.getError().getMsg() != null) {
                             Toast.makeText(FacebookActivity.this, result.getError().getMsg(), Toast.LENGTH_SHORT).show();
                             mTxtResult.setText(result.getError().getMsg());
+                        }
+                        break;
+                    case LoginResult.STATE_FAIL:
+                        if (result.getError()!=null){
+                            switch (result.getError().getCode()){
+                                case LTGameError.CODE_PARAM_ERROR:{
+                                    Log.e("RESULT123", result.getError().getMsg());
+                                    break;
+                                }
+                                case LTGameError.CODE_REQUEST_ERROR:{
+                                    Log.e("RESULT123", result.getError().getMsg());
+                                    break;
+                                }
+                                case LTGameError.CODE_NOT_SUPPORT:{
+                                    Log.e("RESULT123", result.getError().getMsg());
+                                    break;
+                                }
+                            }
                         }
                         break;
                 }

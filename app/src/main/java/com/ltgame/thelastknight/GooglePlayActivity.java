@@ -11,8 +11,10 @@ import android.widget.TextView;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
 import com.gentop.ltgame.ltgamesdkcore.common.Target;
+import com.gentop.ltgame.ltgamesdkcore.exception.LTGameError;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnRechargeListener;
 import com.gentop.ltgame.ltgamesdkcore.manager.RechargeManager;
+import com.gentop.ltgame.ltgamesdkcore.model.LoginResult;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeObject;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeResult;
 import com.sdk.ltgame.ltgoogleplay.GooglePlayPlatform;
@@ -100,7 +102,7 @@ public class GooglePlayActivity extends AppCompatActivity {
                     Log.e(TAG, "开始支付");
                     break;
                 case RechargeResult.STATE_RECHARGE_FAILED:
-                    Log.e(TAG, "支付错误" + result.getErrorMsg());
+                    Log.e(TAG, "支付失败");
                     break;
             }
         }

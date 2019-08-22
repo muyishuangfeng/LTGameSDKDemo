@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
 import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
 import com.gentop.ltgame.ltgamesdkcore.common.Target;
+import com.gentop.ltgame.ltgamesdkcore.exception.LTGameError;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnLoginStateListener;
 import com.gentop.ltgame.ltgamesdkcore.manager.LoginManager;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginObject;
@@ -106,6 +107,26 @@ public class GoogleActivity extends AppCompatActivity {
                             public void onCheckedFailed(String failed) {
                                 Log.e("TAG",failed);
                             }
+
+                            @Override
+                            public void onCheckedException(LTGameError ex) {
+                                if (ex != null) {
+                                    switch (ex.getCode()) {
+                                        case LTGameError.CODE_PARAM_ERROR: {
+                                            Log.e("RESULT123", ex.getMsg());
+                                            break;
+                                        }
+                                        case LTGameError.CODE_REQUEST_ERROR: {
+                                            Log.e("RESULT123", ex.getMsg());
+                                            break;
+                                        }
+                                        case LTGameError.CODE_NOT_SUPPORT: {
+                                            Log.e("RESULT123", ex.getMsg());
+                                            break;
+                                        }
+                                    }
+                                }
+                            }
                         });
 
             }
@@ -148,6 +169,25 @@ public class GoogleActivity extends AppCompatActivity {
                             mTxtResult.setText(result.getError().getMsg());
                         }
                         break;
+                    case LoginResult.STATE_FAIL:
+                        if (result.getError()!=null){
+                            switch (result.getError().getCode()){
+                                case LTGameError.CODE_PARAM_ERROR:{
+                                    Log.e("RESULT123", result.getError().getMsg());
+                                    break;
+                                }
+                                case LTGameError.CODE_REQUEST_ERROR:{
+                                    Log.e("RESULT123", result.getError().getMsg());
+                                    break;
+                                }
+                                case LTGameError.CODE_NOT_SUPPORT:{
+                                    Log.e("RESULT123", result.getError().getMsg());
+                                    break;
+                                }
+                            }
+                        }
+                        break;
+
                 }
             }
 
