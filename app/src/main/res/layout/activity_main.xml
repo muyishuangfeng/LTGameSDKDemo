@@ -40,7 +40,7 @@
         android:layout_margin="20dp"
         android:text="OneStore"
         android:textAllCaps="false"
-        android:visibility="gone" />
+         />
 
     <Button
         android:id="@+id/btn_ui"
@@ -49,8 +49,7 @@
         android:layout_gravity="center"
         android:layout_margin="20dp"
         android:text="UI"
-        android:textAllCaps="false"
-        android:visibility="gone" />
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn_phone"

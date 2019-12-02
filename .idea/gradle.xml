@@ -8,10 +8,16 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/LTGameSDKGuest" />
+            <option value="$PROJECT_DIR$/LTGameSDKUICore" />
+            <option value="$PROJECT_DIR$/LTGameSDKUIFacebook" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/ltgamegoogle" />
+            <option value="$PROJECT_DIR$/ltgameui" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

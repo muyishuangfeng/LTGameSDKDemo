@@ -1,1 +1,1 @@
-include ':app'
+include ':app', ':ltgameui', ':LTGameSDKUICore', ':LTGameSDKGuest', ':LTGameSDKUIFacebook', ':ltgamegoogle'
