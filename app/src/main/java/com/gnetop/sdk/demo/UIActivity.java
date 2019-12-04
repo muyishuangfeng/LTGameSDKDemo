@@ -24,15 +24,16 @@ public class UIActivity extends AppCompatActivity {
 
     Button mBtnLogin, mBtnLoginOut;
     TextView mTxtResult;
-    String LTAppID = "20003";
     String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
+    String LTAppID = "20003";
+//    String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
+//    String LTAppID = "28576";
     String mAgreementUrl = "http://www.baidu.com";
     String mProvacyUrl = "http://www.baidu.com";
     String mAdID;
     String mPackageID = "com.gnetop.sdk.demo";
-    //String baseUrl = "http://sdk.aktgo.com";
     String clientID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
-    String mFacebookId = "347759105952557";
+    String mFacebookId = "2717734461592670";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

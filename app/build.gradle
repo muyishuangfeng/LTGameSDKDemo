@@ -12,14 +12,14 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.gnetop.sdk.demo"
-        minSdkVersion 15
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 4
         versionName "1.0.3"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         signingConfig signingConfigs.config
-        manifestPlaceholders = [Facebook_app_id         : "347759105952557",
-                                fb_login_protocol_scheme: "ff5ee3b4135241962b10eecb4eeab15f",
+        manifestPlaceholders = [Facebook_app_id         : "2717734461592670",
+                                fb_login_protocol_scheme: "e47c01dab5e2f4b1a98329c59076ab33",
                                 QQAppID                 : "1108097616"]
         multiDexEnabled true
         javaCompileOptions {
@@ -33,15 +33,15 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
-            manifestPlaceholders = [Facebook_app_id         : "347759105952557",
-                                    fb_login_protocol_scheme: "ff5ee3b4135241962b10eecb4eeab15f",
+            manifestPlaceholders = [Facebook_app_id         : "2717734461592670",
+                                    fb_login_protocol_scheme: "e47c01dab5e2f4b1a98329c59076ab33",
                                     // WXAppId         : "123456789",
                                     QQAppID                 : "1108097616"]
         }
         debug {
             signingConfig signingConfigs.config
-            manifestPlaceholders = [Facebook_app_id         : "347759105952557",
-                                    fb_login_protocol_scheme: "ff5ee3b4135241962b10eecb4eeab15f",
+            manifestPlaceholders = [Facebook_app_id         : "2717734461592670",
+                                    fb_login_protocol_scheme: "e47c01dab5e2f4b1a98329c59076ab33",
                                     //WXAppId         : "123456789",
                                     QQAppID                 : "1108097616"]
         }
@@ -56,13 +56,13 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.muyishuangfeng:LTGameSDKGoogle-Android:1.1.7'
-    implementation 'com.github.muyishuangfeng:LTGameSDKGooglePlay-Android:1.1.6'
-    implementation 'com.github.muyishuangfeng:LTGameSDKFacebook-Android:1.1.8'
-    implementation 'com.github.muyishuangfeng:LTGameSDKOneStore-Android:1.1.5'
-    implementation 'com.github.muyishuangfeng:LTGameSDKPhone-Android:1.1.0'
-    implementation 'com.github.muyishuangfeng:LTGameSDKQQ-Android:1.0.8'
+    //implementation 'com.github.muyishuangfeng:LTGameSDKGoogle-Android:1.1.8'
+    implementation 'com.github.muyishuangfeng:LTGameSDKGooglePlay-Android:1.1.7'
+    //implementation 'com.github.muyishuangfeng:LTGameSDKFacebook-Android:1.1.9'
+    //implementation 'com.github.muyishuangfeng:LTGameSDKOneStore-Android:1.1.6'
+    //implementation 'com.github.muyishuangfeng:LTGameSDKPhone-Android:1.1.1'
+    //implementation 'com.github.muyishuangfeng:LTGameSDKQQ-Android:1.0.9'
     //方法数超过65535
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.github.muyishuangfeng:LTGameKoreaSDKUI-Android:1.0.5'
+    implementation 'com.github.muyishuangfeng:LTGameKoreaSDKUI-Android:1.0.6'
 }

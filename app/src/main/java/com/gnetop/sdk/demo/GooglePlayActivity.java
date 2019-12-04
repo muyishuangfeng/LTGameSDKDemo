@@ -27,11 +27,14 @@ public class GooglePlayActivity extends AppCompatActivity {
     String base64EncodedPublicKey;
     String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
     String LTAppID = "20003";
+//    String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
+//    String LTAppID = "28576";
+
     String packageName = "com.gnetop.sdk.demo";
     private static final int selfRequestCode = 0x01;
     private String mGoodsID="33";
+   // private String mGoodsID="138";
     String productID = "com.gnetop.one";
-    //String baseUrl = "http://sdk.aktgo.com";
     Map<String, Object> params = new WeakHashMap<>();
 
 
@@ -53,7 +56,6 @@ public class GooglePlayActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 RechargeObject result = new RechargeObject();
-                //result.setBaseUrl(baseUrl);
                 result.setLTAppID(LTAppID);
                 result.setLTAppKey(LTAppKey);
                 result.setSku(productID);
