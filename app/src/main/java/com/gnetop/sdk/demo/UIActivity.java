@@ -32,6 +32,7 @@ public class UIActivity extends AppCompatActivity {
     String mProvacyUrl = "http://www.baidu.com";
     String mAdID;
     String mPackageID = "com.gnetop.sdk.demo";
+    //String clientID = "269783363577-at0k09ie9d59hvll2dhs24e2fcevnmue.apps.googleusercontent.com";
     String clientID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
     String mFacebookId = "2717734461592670";
 
