@@ -64,5 +64,5 @@ dependencies {
     //implementation 'com.github.muyishuangfeng:LTGameSDKQQ-Android:1.0.9'
     //方法数超过65535
     implementation 'com.android.support:multidex:1.0.3'
-    implementation 'com.github.muyishuangfeng:LTGameKoreaSDKUI-Android:1.0.7'
+    implementation 'com.github.muyishuangfeng:LTGameKoreaSDKUI-Android:1.0.8'
 }

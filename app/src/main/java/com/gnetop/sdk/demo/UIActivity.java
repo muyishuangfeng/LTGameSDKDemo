@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -80,13 +81,15 @@ public class UIActivity extends AppCompatActivity {
                     @Override
                     public void onResult(ResultData result) {
                         mTxtResult.setText("=====登录成功:\n" +result.toString());
+                        Log.e("TAG",result.toString());
                     }
                 }, new OnReLoginInListener() {
 
                     @SuppressLint("SetTextI18n")
                     @Override
                     public void OnLoginResult(ResultData result) {
-                        mTxtResult.setText("=====结果:\n" + result.toString());
+                        mTxtResult.setText("OnReLoginInListener=====结果:\n" + result.toString());
+                        Log.e("TAG",result.toString());
                     }
                 });
     }
@@ -98,6 +101,7 @@ public class UIActivity extends AppCompatActivity {
                     @Override
                     public void onResult(ResultData result) {
                         mTxtResult.setText("=====结果:\n" + result.toString());
+                        Log.e("TAG",result.toString());
                     }
                 });
     }
