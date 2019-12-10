@@ -27,8 +27,8 @@ public class UIActivity extends AppCompatActivity {
     TextView mTxtResult;
     String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
     String LTAppID = "20003";
-//    String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
-//    String LTAppID = "28576";
+    //String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
+   // String LTAppID = "28576";
     String mAgreementUrl = "http://www.baidu.com";
     String mProvacyUrl = "http://www.baidu.com";
     String mAdID;
