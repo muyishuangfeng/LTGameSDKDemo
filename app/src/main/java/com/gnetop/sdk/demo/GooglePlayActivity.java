@@ -15,6 +15,7 @@ import com.gentop.ltgame.ltgamesdkcore.impl.OnRechargeListener;
 import com.gentop.ltgame.ltgamesdkcore.manager.RechargeManager;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeObject;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeResult;
+import com.sdk.ltgame.ltgoogleplay.GooglePlayPlatform;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -43,7 +44,6 @@ public class GooglePlayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_play);
         initView();
-        init();
     }
 
     private void initView() {
@@ -55,6 +55,7 @@ public class GooglePlayActivity extends AppCompatActivity {
         mBtnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                init();
                 RechargeObject result = new RechargeObject();
                 result.setLTAppID(LTAppID);
                 result.setLTAppKey(LTAppKey);
