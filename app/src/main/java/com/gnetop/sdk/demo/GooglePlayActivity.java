@@ -100,7 +100,40 @@ public class GooglePlayActivity extends AppCompatActivity {
                     Log.e(TAG, "开始支付");
                     break;
                 case RechargeResult.STATE_RECHARGE_FAILED:
-                    Log.e(TAG, "支付失败");
+                    switch(result.getErrorMsg()){
+                        case "1":{//取消购买
+                            Log.e(TAG, "取消购买");
+                            break;
+                        }
+                        case "2":{//网络异常
+                            Log.e(TAG, "网络异常");
+                            break;
+                        }
+                        case "3":{//不支持购买
+                            Log.e(TAG, "不支持购买");
+                            break;
+                        }
+                        case "4":{//商品不可购买
+                            Log.e(TAG, "商品不可购买");
+                            break;
+                        }
+                        case "5":{//提供给 API 的无效参数
+                            Log.e(TAG, "无效参数");
+                            break;
+                        }
+                        case "6":{//错误
+                            Log.e(TAG, "错误");
+                            break;
+                        }
+                        case "7":{//未消耗掉
+                            Log.e(TAG, "未消耗掉");
+                            break;
+                        }
+                        case "8":{//不可购买
+                            Log.e(TAG, "不可购买");
+                            break;
+                        }
+                    }
                     break;
             }
         }
