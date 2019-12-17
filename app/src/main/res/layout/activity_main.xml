@@ -38,6 +38,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:visibility="gone"
         android:text="OneStore"
         android:textAllCaps="false"
          />
@@ -48,6 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
+        android:visibility="gone"
         android:text="UI"
         android:textAllCaps="false" />
 

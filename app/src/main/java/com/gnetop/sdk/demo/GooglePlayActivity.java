@@ -15,7 +15,6 @@ import com.gentop.ltgame.ltgamesdkcore.impl.OnRechargeListener;
 import com.gentop.ltgame.ltgamesdkcore.manager.RechargeManager;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeObject;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeResult;
-import com.sdk.ltgame.ltgoogleplay.GooglePlayPlatform;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -34,7 +33,7 @@ public class GooglePlayActivity extends AppCompatActivity {
     String packageName = "com.gnetop.sdk.demo";
     private static final int selfRequestCode = 0x01;
     private String mGoodsID="33";
-   // private String mGoodsID="138";
+    // private String mGoodsID="138";
     String productID = "com.gnetop.one";
     Map<String, Object> params = new WeakHashMap<>();
 

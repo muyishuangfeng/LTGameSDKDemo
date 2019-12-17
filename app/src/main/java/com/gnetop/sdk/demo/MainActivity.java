@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this, GoogleActivity.class));
+                startActivity(new Intent(MainActivity.this, GoogleActivity.class));
 
             }
         });
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnOne.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this, OneStoreActivity.class));
+               // startActivity(new Intent(MainActivity.this, OneStoreActivity.class));
 
             }
         });
@@ -58,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnUI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(MainActivity.this, UIActivity.class));
+                //startActivity(new Intent(MainActivity.this, UIActivity.class));
 
             }
         });
@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnPhone.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this, PhoneActivity.class));
+                startActivity(new Intent(MainActivity.this, PhoneActivity.class));
 
             }
         });
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this, FacebookActivity.class));
+                startActivity(new Intent(MainActivity.this, FacebookActivity.class));
 
             }
         });
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         mBtnQQ.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(MainActivity.this, QQActivity.class));
+                startActivity(new Intent(MainActivity.this, QQActivity.class));
 
             }
         });
