@@ -16,6 +16,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:appComponentFactory,android:allowBackup">
+        <activity android:name=".GuestActivity"/>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,17 +28,18 @@
         <activity android:name=".GooglePlayActivity" />
         <activity android:name=".OneStoreActivity" />
         <activity android:name=".QQActivity" />
-        <activity android:name=".PhoneActivity" />
         <activity android:name=".WebActivity" />
+        <activity android:name=".PhoneActivity" />
         <activity android:name=".FacebookActivity" />
-        <activity android:name=".UIActivity"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".UIActivity"
+            android:screenOrientation="landscape" />
     </application>
-    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="com.android.vending.BILLING" />
     <uses-permission android:name="android.permission.INTERNET" />
-
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 
 </manifest>

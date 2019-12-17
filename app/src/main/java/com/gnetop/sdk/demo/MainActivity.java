@@ -8,12 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.sdk.ltgame.guest.GuestPlatform;
 import com.sdk.ltgame.ltnet.base.Constants;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mBtnStart, mBtnGoogle,mBtnOne,mBtnUI,mBtnPhone,mBtnQQ,mBtnFacebook;
+    Button mBtnStart, mBtnGoogle,mBtnOne,mBtnUI,mBtnPhone,mBtnQQ,mBtnFacebook,mBtnGuest;
     TextView mTxtResult;
     NetResultReceiver mReceiver;
 
@@ -83,6 +84,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this, QQActivity.class));
+
+            }
+        });
+        mBtnGuest = findViewById(R.id.btn_guest);
+        mBtnGuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, GuestActivity.class));
 
             }
         });

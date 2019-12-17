@@ -33,6 +33,15 @@
         android:textAllCaps="false" />
 
     <Button
+        android:id="@+id/btn_guest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Guest"
+        android:textAllCaps="false"
+         />
+    <Button
         android:id="@+id/btn_one"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

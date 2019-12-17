@@ -45,6 +45,7 @@
         android:layout_width="@dimen/dp_145"
         android:layout_height="@dimen/dp_35"
         android:layout_gravity="center"
+        android:visibility="gone"
         android:layout_marginTop="@dimen/dp_31"
         android:background="@drawable/btn_light_gray_corner"
         android:gravity="center">
