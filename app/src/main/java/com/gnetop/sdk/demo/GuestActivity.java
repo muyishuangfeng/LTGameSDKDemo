@@ -31,12 +31,15 @@ public class GuestActivity extends AppCompatActivity {
     String LTAppID = "20003";
     String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
     String TAG = "GuestActivity";
+//    String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
+//    String LTAppID = "28576";
+
     String mFacebookId = "2717734461592670";
     private OnLoginStateListener mOnLoginListener;
     String clientID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
     String mPackageID = "com.gnetop.sdk.demo";
     String mAdID;
-    String mLtToken,mLtId;
+    String mLtToken, mLtId;
 
 
     @Override
@@ -107,9 +110,9 @@ public class GuestActivity extends AppCompatActivity {
                 switch (result.state) {
                     case LoginResult.STATE_SUCCESS:
                         if (result.getResultModel() != null) {
-                            mLtToken=result.getResultModel().getData().getLt_uid_token();
-                            mLtId=result.getResultModel().getData().getLt_uid();
-                            mTxtResult.setText(mLtToken+"===="+mLtId+"===="+result.getResultModel().getCode());
+                            mLtToken = result.getResultModel().getData().getLt_uid_token();
+                            mLtId = result.getResultModel().getData().getLt_uid();
+                            mTxtResult.setText(mLtToken + "====" + mLtId + "====" + result.getResultModel().getCode());
                         }
                         break;
                     case LoginResult.STATE_LOGIN_OUT:
@@ -119,19 +122,19 @@ public class GuestActivity extends AppCompatActivity {
                         }
                         break;
                     case LoginResult.STATE_FAIL:
-                        if (result.getError()!=null){
-                            mTxtResult.setText(result.getError().getMsg()+"====="+result.getError().getCode());
-                            Log.e(TAG, result.getError().getMsg()+"====="+result.getError().getCode());
-                            switch (result.getError().getCode()){
-                                case LTGameError.CODE_PARAM_ERROR:{
+                        if (result.getError() != null) {
+                            mTxtResult.setText(result.getError().getMsg() + "=====" + result.getError().getCode());
+                            Log.e(TAG, result.getError().getMsg() + "=====" + result.getError().getCode());
+                            switch (result.getError().getCode()) {
+                                case LTGameError.CODE_PARAM_ERROR: {
                                     Log.e(TAG, result.getError().getMsg());
                                     break;
                                 }
-                                case LTGameError.CODE_REQUEST_ERROR:{
+                                case LTGameError.CODE_REQUEST_ERROR: {
                                     Log.e("RESULT123", result.getError().getMsg());
                                     break;
                                 }
-                                case LTGameError.CODE_NOT_SUPPORT:{
+                                case LTGameError.CODE_NOT_SUPPORT: {
                                     Log.e("RESULT", result.getError().getMsg());
                                     break;
                                 }

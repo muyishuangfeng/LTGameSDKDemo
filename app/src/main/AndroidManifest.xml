@@ -31,6 +31,7 @@
         <activity android:name=".WebActivity" />
         <activity android:name=".PhoneActivity" />
         <activity android:name=".FacebookActivity" />
+        <activity android:name=".MainCallBack" />
         <activity
             android:name=".UIActivity"
             android:screenOrientation="landscape" />

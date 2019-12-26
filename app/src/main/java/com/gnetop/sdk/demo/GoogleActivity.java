@@ -26,6 +26,7 @@ import java.util.concurrent.Executors;
 
 public class GoogleActivity extends AppCompatActivity {
 
+    //当前包名
     Button mBtnStart, mBtnLoginOut,mBtnAuto;
     TextView mTxtResult;
     private static final int REQUEST_CODE = 0x01;
