@@ -25,16 +25,16 @@ public class UIActivity extends AppCompatActivity {
 
     Button mBtnLogin, mBtnLoginOut;
     TextView mTxtResult;
-    //String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
-    //String LTAppID = "20003";
-    String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
-    String LTAppID = "28576";
+    String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
+    String LTAppID = "20003";
+//    String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
+//    String LTAppID = "28576";
     String mAgreementUrl = "http://www.baidu.com";
     String mProvacyUrl = "http://www.baidu.com";
     String mAdID;
     String mPackageID = "com.gnetop.sdk.demo";
-    String clientID = "269783363577-at0k09ie9d59hvll2dhs24e2fcevnmue.apps.googleusercontent.com";
-    //String clientID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
+    //String clientID = "269783363577-at0k09ie9d59hvll2dhs24e2fcevnmue.apps.googleusercontent.com";
+    String clientID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
     String mFacebookId = "2717734461592670";
 
     @Override
@@ -75,7 +75,7 @@ public class UIActivity extends AppCompatActivity {
 
 
     private void login() {
-        LoginUIManager.getInstance().loginIn(this, false, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
+        LoginUIManager.getInstance().loginIn(this, true, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
                 LTAppID, LTAppKey, mAdID, mPackageID, false, new OnResultClickListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
@@ -95,7 +95,7 @@ public class UIActivity extends AppCompatActivity {
     }
 
     private void loginOut() {
-        LoginUIManager.getInstance().loginOut(this, false, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
+        LoginUIManager.getInstance().loginOut(this, true, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
                 LTAppID, LTAppKey, mAdID, mPackageID, false, new OnResultClickListener() {
                     @SuppressLint("SetTextI18n")
                     @Override

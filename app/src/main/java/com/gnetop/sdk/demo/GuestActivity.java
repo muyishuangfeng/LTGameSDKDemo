@@ -25,7 +25,7 @@ import java.util.concurrent.Executors;
 
 public class GuestActivity extends AppCompatActivity {
 
-    Button mBtnLogin, mBtnBind;
+    Button mBtnLogin, mBtnBind, mBtnUnBind, mBtnFB;
     TextView mTxtResult;
     private static final int REQUEST_CODE = 0x01;
     String LTAppID = "20003";
@@ -68,6 +68,22 @@ public class GuestActivity extends AppCompatActivity {
                 LoginManager.login(GuestActivity.this, Target.LOGIN_GUEST, object, mOnLoginListener);
             }
         });
+        mBtnFB = findViewById(R.id.btn_bind_fb);
+        mBtnFB.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginObject object = new LoginObject();
+                object.setmAdID(mAdID);
+                object.setFacebookAppID(mFacebookId);
+                object.setLTAppID(LTAppID);
+                object.setLTAppKey(LTAppKey);
+                object.setSelfRequestCode(REQUEST_CODE);
+                object.setmPackageID(mPackageID);
+                object.setmGoogleClient(clientID);
+                object.setGuestType("2");
+                LoginManager.login(GuestActivity.this, Target.LOGIN_GUEST, object, mOnLoginListener);
+            }
+        });
         mBtnBind = findViewById(R.id.btn_bind);
         mBtnBind.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +97,22 @@ public class GuestActivity extends AppCompatActivity {
                 object.setmPackageID(mPackageID);
                 object.setmGoogleClient(clientID);
                 object.setGuestType("3");
+                LoginManager.login(GuestActivity.this, Target.LOGIN_GUEST, object, mOnLoginListener);
+            }
+        });
+        mBtnUnBind = findViewById(R.id.btn_unbind);
+        mBtnUnBind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginObject object = new LoginObject();
+                object.setmAdID(mAdID);
+                object.setFacebookAppID(mFacebookId);
+                object.setLTAppID(LTAppID);
+                object.setLTAppKey(LTAppKey);
+                object.setSelfRequestCode(REQUEST_CODE);
+                object.setmPackageID(mPackageID);
+                object.setmGoogleClient(clientID);
+                object.setGuestType("4");
                 LoginManager.login(GuestActivity.this, Target.LOGIN_GUEST, object, mOnLoginListener);
             }
         });

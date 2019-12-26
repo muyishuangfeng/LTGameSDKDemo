@@ -20,9 +20,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="20dp"
-        android:text="绑定"
+        android:text="绑定Google"
         android:textAllCaps="false" />
 
+    <Button
+        android:id="@+id/btn_bind_fb"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="绑定FB"
+        android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn_unbind"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="解绑"
+        android:textAllCaps="false" />
 
 
     <TextView
