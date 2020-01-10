@@ -34,7 +34,7 @@ public class GooglePlayActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.gpInit(this,true,true,0);
+        LoginEventManager.gpInit(this, true, true, 0);
         final Map<String, Object> params = new WeakHashMap<>();
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);
@@ -42,13 +42,11 @@ public class GooglePlayActivity extends AppCompatActivity {
         mBtnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               LoginEventManager.gpRecharge(GooglePlayActivity.this,mSKU,mGoodsID,params,0,
-                       mOnRechargeListener);
+                LoginEventManager.gpRecharge(GooglePlayActivity.this, mSKU, mGoodsID, params, 0,
+                        mOnRechargeListener);
             }
         });
     }
-
-
 
 
     OnRechargeListener mOnRechargeListener = new OnRechargeListener() {
@@ -56,6 +54,7 @@ public class GooglePlayActivity extends AppCompatActivity {
         public void onState(Activity activity, RechargeResult result) {
             switch (result.state) {
                 case RechargeResult.STATE_RECHARGE_SUCCESS:
+                    //TODO:支付统计方法
                     FacebookUIEventManager.getInstance().recharge(GooglePlayActivity.this,
                             result.getResultModel().getData().getLt_price(),
                             result.getResultModel().getData().getLt_currency(),
