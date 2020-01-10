@@ -1,43 +1,28 @@
 package com.gnetop.sdk.demo;
 
 import android.app.Activity;
-import android.os.Build;
 import android.os.Bundle;
-import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
-import com.gentop.ltgame.ltgamesdkcore.common.Target;
 import com.gentop.ltgame.ltgamesdkcore.exception.LTGameError;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnLoginStateListener;
-import com.gentop.ltgame.ltgamesdkcore.manager.LoginManager;
-import com.gentop.ltgame.ltgamesdkcore.model.LoginObject;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginResult;
-import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
+import com.gnetop.sdk.demo.manager.LoginEventManager;
 
-import java.util.concurrent.Executors;
 
 public class PhoneActivity extends AppCompatActivity {
 
 
     Button mBtnLogin, mBtnRegister, mBtnChange;
     TextView mTxtResult;
-    String LTAppID = "20001";
-    String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
     String TAG = "PhoneActivity";
-    String mAdID;
-    //String baseUrl = "http://sdk.aktgo.com";
     private OnLoginStateListener mOnLoginListener;
     String mPhone = "18302949079";
     String mPassword = "123456789";
-    AppCompatImageView mImgLeft, mImgMiddle, mImgRight;
 
 
     @Override
@@ -49,59 +34,29 @@ public class PhoneActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mImgLeft = findViewById(R.id.img_guest_left);
-        mImgMiddle = findViewById(R.id.img_guest_middle);
-        mImgRight = findViewById(R.id.img_guest_right);
+        LoginEventManager.phoneInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnChange = findViewById(R.id.btn_change);
         mBtnChange.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                //object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setmPhone(mPhone);
-                object.setmPassword("123456789");
-                object.setmLoginCode("3");
-                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
-
+                LoginEventManager.phoneLogin(PhoneActivity.this, mPhone, mPassword, "3", mOnLoginListener);
 
             }
         });
         mBtnLogin = findViewById(R.id.btn_login);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                //object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setmPhone(mPhone);
-                object.setmPassword(mPassword);
-                object.setmLoginCode("2");
-                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
-
+                LoginEventManager.phoneLogin(PhoneActivity.this, mPhone, mPassword, "2", mOnLoginListener);
             }
         });
         mBtnRegister = findViewById(R.id.btn_register);
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                //object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setmPhone(mPhone);
-                object.setmPassword(mPassword);
-                object.setmLoginCode("1");
-                LoginManager.login(PhoneActivity.this, Target.LOGIN_PHONE, object, mOnLoginListener);
+                LoginEventManager.phoneLogin(PhoneActivity.this, mPhone, mPassword, "1", mOnLoginListener);
             }
         });
     }
@@ -111,20 +66,6 @@ public class PhoneActivity extends AppCompatActivity {
      * 初始化数据
      */
     private void initData() {
-        Executors.newSingleThreadExecutor().execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    mAdID = DeviceUtils.getGoogleAdId(getApplicationContext());
-                    if (!TextUtils.isEmpty(mAdID)) {
-                        init();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
         mOnLoginListener = new OnLoginStateListener() {
             @Override
             public void onState(Activity activity, LoginResult result) {
@@ -153,18 +94,5 @@ public class PhoneActivity extends AppCompatActivity {
         };
     }
 
-    private void init() {
-        LTGameOptions options = new LTGameOptions.Builder(this)
-                .debug(true)
-                .appID(LTAppID)
-                .appKey(LTAppKey)
-                .isServerTest(true)
-                .setAdID(mAdID)
-                .loginCode("1")
-                .phoneAndPass(mPhone, mPassword)
-                .phoneEnable()
-                .build();
-        LTGameSdk.init(options);
-    }
 
 }

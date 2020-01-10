@@ -8,34 +8,21 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
-import com.gentop.ltgame.ltgamesdkcore.common.Target;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnRechargeListener;
-import com.gentop.ltgame.ltgamesdkcore.manager.RechargeManager;
-import com.gentop.ltgame.ltgamesdkcore.model.RechargeObject;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeResult;
+import com.gnetop.sdk.demo.manager.LoginEventManager;
 
 import java.util.Map;
 import java.util.WeakHashMap;
+
 
 public class GooglePlayActivity extends AppCompatActivity {
 
     Button mBtnPay;
     TextView mTxtResult;
     private static final String TAG = GooglePlayActivity.class.getSimpleName();
-    String base64EncodedPublicKey;
-    String LTAppKey = "q2h75rE8MW3fOVed82muf5w8dkBfXiSG";
-    String LTAppID = "20003";
-    // String LTAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
-    //String LTAppID = "28576";
-
-    String packageName = "com.gnetop.sdk.demo";
-    private static final int selfRequestCode = 0x01;
-    private String mGoodsID = "33";
-    Map<String, Object> params = new WeakHashMap<>();
-    //private String mGoodsID = "138";
-    String productID = "com.gnetop.one";
+    private String mGoodsID = "138";
+    String mSKU = "com.gnetop.one";
 
 
     @Override
@@ -46,54 +33,29 @@ public class GooglePlayActivity extends AppCompatActivity {
     }
 
     private void initView() {
-
-        base64EncodedPublicKey = getResources().getString(R.string.ltgame_google_iab_key);
+        LoginEventManager.gpInit(this,true,true,0);
+        final Map<String, Object> params = new WeakHashMap<>();
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);
         mBtnPay = findViewById(R.id.btn_pay);
         mBtnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                init();
-                RechargeObject result = new RechargeObject();
-                result.setLTAppID(LTAppID);
-                result.setLTAppKey(LTAppKey);
-                result.setSku(productID);
-                result.setGoodsID(mGoodsID);
-                result.setPublicKey(base64EncodedPublicKey);
-                result.setmPackageID(packageName);
-                result.setParams(params);
-                result.setPayTest(0);
-                RechargeManager.recharge(GooglePlayActivity.this, Target.RECHARGE_GOOGLE,
-                        result, mOnRechargeListener);
+               LoginEventManager.gpRecharge(GooglePlayActivity.this,mSKU,mGoodsID,params,0,
+                       mOnRechargeListener);
             }
         });
     }
 
 
-    private void init() {
-        LTGameOptions options = new LTGameOptions.Builder(this)
-                .debug(true)
-                .appID(LTAppID)
-                .appKey(LTAppKey)
-                .publicKey(base64EncodedPublicKey)
-                .isServerTest(true)
-                .setParams(params)
-                .payTest(0)
-                .goodsID(productID, mGoodsID)
-                .packageID(packageName)
-                .googlePlay(true)
-                .requestCode(selfRequestCode)
-                .build();
-        LTGameSdk.init(options);
-    }
+
 
     OnRechargeListener mOnRechargeListener = new OnRechargeListener() {
         @Override
         public void onState(Activity activity, RechargeResult result) {
             switch (result.state) {
                 case RechargeResult.STATE_RECHARGE_SUCCESS:
-                    mTxtResult.setText(result.getResultModel().getCode() + "======");
+                    mTxtResult.setText(result.getResultModel().toString());
                     break;
                 case RechargeResult.STATE_RECHARGE_START:
                     Log.e(TAG, "开始支付");

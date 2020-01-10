@@ -13,6 +13,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 
+
 public class WebActivity extends AppCompatActivity {
 
     WebView mWebView;

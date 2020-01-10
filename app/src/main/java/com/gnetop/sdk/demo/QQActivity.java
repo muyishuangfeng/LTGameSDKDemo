@@ -3,35 +3,23 @@ package com.gnetop.sdk.demo;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
-import com.gentop.ltgame.ltgamesdkcore.common.Target;
 import com.gentop.ltgame.ltgamesdkcore.exception.LTGameError;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnLoginStateListener;
-import com.gentop.ltgame.ltgamesdkcore.manager.LoginManager;
-import com.gentop.ltgame.ltgamesdkcore.model.LoginObject;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginResult;
-import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
+import com.gnetop.sdk.demo.manager.LoginEventManager;
 
-import java.util.concurrent.Executors;
 
 public class QQActivity extends AppCompatActivity {
 
     Button mBtnLogin, mBtnLoginOut;
     TextView mTxtResult;
-    String LTAppID = "20001";
-    String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
     String TAG = "QQActivity";
-    String mAdID;
-    //String baseUrl = "http://sdk.aktgo.com";
     private OnLoginStateListener mOnLoginListener;
-    String mQQAppID = "1108097616";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,34 +30,21 @@ public class QQActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        LoginEventManager.qqInit(this, true, true);
+
         mTxtResult = findViewById(R.id.txt_result);
         mBtnLoginOut = findViewById(R.id.btn_loginOut);
         mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                //object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setQqAppID(mQQAppID);
-                object.setLoginOut(true);
-                LoginManager.login(QQActivity.this, Target.LOGIN_QQ, object, mOnLoginListener);
-
+                LoginEventManager.qqLogin(QQActivity.this, true, mOnLoginListener);
             }
         });
         mBtnLogin = findViewById(R.id.btn_login);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginObject object = new LoginObject();
-                // object.setBaseUrl(baseUrl);
-                object.setmAdID(mAdID);
-                object.setLTAppID(LTAppID);
-                object.setLTAppKey(LTAppKey);
-                object.setQqAppID(mQQAppID);
-                object.setLoginOut(false);
-                LoginManager.login(QQActivity.this, Target.LOGIN_QQ, object, mOnLoginListener);
+                LoginEventManager.qqLogin(QQActivity.this, false, mOnLoginListener);
             }
         });
 
@@ -80,20 +55,6 @@ public class QQActivity extends AppCompatActivity {
      * 初始化数据
      */
     private void initData() {
-        Executors.newSingleThreadExecutor().execute(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    mAdID = DeviceUtils.getGoogleAdId(getApplicationContext());
-                    if (!TextUtils.isEmpty(mAdID)) {
-                        init();
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
         mOnLoginListener = new OnLoginStateListener() {
             @Override
             public void onState(Activity activity, LoginResult result) {
@@ -113,11 +74,11 @@ public class QQActivity extends AppCompatActivity {
                                     break;
                                 }
                                 case LTGameError.CODE_REQUEST_ERROR: {
-                                    Log.e("RESULT123", result.getError().getMsg());
+                                    Log.e("RESULT123", "CODE_REQUEST_ERROR" + result.getError().getMsg());
                                     break;
                                 }
                                 case LTGameError.CODE_NOT_SUPPORT: {
-                                    Log.e("RESULT123", result.getError().getMsg());
+                                    Log.e("RESULT123", "CODE_NOT_SUPPORT" + result.getError().getMsg());
                                     break;
                                 }
                             }
@@ -129,16 +90,5 @@ public class QQActivity extends AppCompatActivity {
         };
     }
 
-    private void init() {
-        LTGameOptions options = new LTGameOptions.Builder(this)
-                .debug(true)
-                .appID(LTAppID)
-                .appKey(LTAppKey)
-                .isServerTest(true)
-                .setAdID(mAdID)
-                .setQQEnable(true)
-                .qq(mQQAppID)
-                .build();
-        LTGameSdk.init(options);
-    }
+
 }

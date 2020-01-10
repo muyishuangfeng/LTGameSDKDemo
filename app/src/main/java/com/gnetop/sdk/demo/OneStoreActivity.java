@@ -8,30 +8,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameOptions;
-import com.gentop.ltgame.ltgamesdkcore.common.LTGameSdk;
-import com.gentop.ltgame.ltgamesdkcore.common.Target;
 import com.gentop.ltgame.ltgamesdkcore.impl.OnRechargeListener;
-import com.gentop.ltgame.ltgamesdkcore.manager.RechargeManager;
-import com.gentop.ltgame.ltgamesdkcore.model.RechargeObject;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeResult;
+import com.gnetop.sdk.demo.manager.LoginEventManager;
 
 import java.util.Map;
 import java.util.WeakHashMap;
+
 
 public class OneStoreActivity extends AppCompatActivity {
 
     Button mBtnPay;
     TextView mTxtResult;
-    //String baseUrl = "http://sdk.aktgo.com";
     Map<String, Object> params = new WeakHashMap<>();
-    String PUBLIC_KEY = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu9RPDbvVqM8XWqVc75JXccIXN1VS8XViRZzATUq62kkFIXCeo52LKzBCh3iWFQIvX3jqDhim4ESqHMezEx8CxaTq8NpNoQXutBNmOEl+/7HTUsZxI93wgn9+7pFMyoFlasqmVjCcM7zbbAx5G0bySsm98TFxTu16OGmO01JGonQIDAQAB";
-    String LTAppKey = "f8XkF2vVDMh4BWxAayD0YOIl0C2QVEaW";
-    String LTAppID = "20001";
-    String packageName = "com.ltgames.yyjw.one";
-    private static final int selfRequestCode = 0x01;
-    String productID = "com.ltgamesyyjw.lslb1";
+    String mSKU = "com.ltgamesyyjw.lslb1";
     private static final String TAG = OneStoreActivity.class.getSimpleName();
+    String mGoodsID = "11";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,46 +35,22 @@ public class OneStoreActivity extends AppCompatActivity {
 
 
     private void initView() {
+        LoginEventManager.oneStoreInit(this, true, true);
+
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);
         mBtnPay = findViewById(R.id.btn_pay);
         mBtnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                RechargeObject result = new RechargeObject();
-                //result.setBaseUrl(baseUrl);
-                result.setLTAppID(LTAppID);
-                result.setLTAppKey(LTAppKey);
-                result.setSku(productID);
-                result.setGoodsID("11");
-                result.setmGoodsType("inapp");
-                result.setPublicKey(PUBLIC_KEY);
-                result.setmPackageID(packageName);
-                result.setParams(params);
-                result.setPayTest(1);
-                RechargeManager.recharge(OneStoreActivity.this, Target.RECHARGE_ONE_STORE,
-                        result, mOnRechargeListener);
+                LoginEventManager.oneStoreRecharge(OneStoreActivity.this, mSKU, mGoodsID, params,
+                        0, mOnRechargeListener);
             }
         });
     }
 
     private void init() {
-        LTGameOptions options = new LTGameOptions.Builder(this)
-                .debug(true)
-                .appID(LTAppID)
-                .appKey(LTAppKey)
-                .publicKey(PUBLIC_KEY)
-                .isServerTest(true)
-                .goodsType("inapp")
-                .setParams(params)
-                .payTest(1)
-                .oneStore()
-                .goodsID(productID, "11")
-                .packageID(packageName)
-                .googlePlay(true)
-                .requestCode(selfRequestCode)
-                .build();
-        LTGameSdk.init(options);
+
     }
 
     OnRechargeListener mOnRechargeListener = new OnRechargeListener() {

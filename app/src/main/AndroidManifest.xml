@@ -4,7 +4,7 @@
     package="com.gnetop.sdk.demo">
 
     <application
-        android:name=".App"
+        android:name=".APP"
         android:allowBackup="true"
         android:appComponentFactory="1.0.0"
         android:icon="@mipmap/ic_launcher"
@@ -31,7 +31,7 @@
         <activity android:name=".WebActivity" />
         <activity android:name=".PhoneActivity" />
         <activity android:name=".FacebookActivity" />
-        <activity android:name=".MainCallBack" />
+
         <activity
             android:name=".UIActivity"
             android:screenOrientation="landscape" />
