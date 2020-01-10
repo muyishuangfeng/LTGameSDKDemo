@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.gentop.ltgame.ltgamesdkcore.impl.OnRechargeListener;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeResult;
+import com.gentop.ltsdk.facebook.FacebookUIEventManager;
 import com.gnetop.sdk.demo.manager.LoginEventManager;
 
 import java.util.Map;
@@ -55,6 +56,10 @@ public class GooglePlayActivity extends AppCompatActivity {
         public void onState(Activity activity, RechargeResult result) {
             switch (result.state) {
                 case RechargeResult.STATE_RECHARGE_SUCCESS:
+                    FacebookUIEventManager.getInstance().recharge(GooglePlayActivity.this,
+                            result.getResultModel().getData().getLt_price(),
+                            result.getResultModel().getData().getLt_currency(),
+                            result.getResultModel().getData().getLt_order_id());
                     mTxtResult.setText(result.getResultModel().toString());
                     break;
                 case RechargeResult.STATE_RECHARGE_START:
