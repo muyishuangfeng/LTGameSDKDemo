@@ -30,21 +30,21 @@ public class QQActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.qqInit(this, true, true);
+        LoginEventManager.getInstance().qqInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnLoginOut = findViewById(R.id.btn_loginOut);
         mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.qqLogin(QQActivity.this, true, mOnLoginListener);
+                LoginEventManager.getInstance().qqLogin(QQActivity.this, true, mOnLoginListener);
             }
         });
         mBtnLogin = findViewById(R.id.btn_login);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.qqLogin(QQActivity.this, false, mOnLoginListener);
+                LoginEventManager.getInstance().qqLogin(QQActivity.this, false, mOnLoginListener);
             }
         });
 

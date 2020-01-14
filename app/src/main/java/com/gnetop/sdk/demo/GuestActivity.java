@@ -32,14 +32,14 @@ public class GuestActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.guestInit(this, true, true);
+        LoginEventManager.getInstance().guestInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnLogin = findViewById(R.id.btn_login);
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.guestLogin(GuestActivity.this, "1",false,
+                LoginEventManager.getInstance().guestLogin(GuestActivity.this, "1",false,
                         mOnLoginListener);
 
             }
@@ -48,7 +48,7 @@ public class GuestActivity extends AppCompatActivity {
         mBtnFB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.guestLogin(GuestActivity.this, "2", false,
+                LoginEventManager.getInstance().guestLogin(GuestActivity.this, "2", false,
                         mOnLoginListener);
             }
         });
@@ -56,7 +56,7 @@ public class GuestActivity extends AppCompatActivity {
         mBtnBind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.guestLogin(GuestActivity.this, "3",false,
+                LoginEventManager.getInstance().guestLogin(GuestActivity.this, "3",false,
                         mOnLoginListener);
             }
         });

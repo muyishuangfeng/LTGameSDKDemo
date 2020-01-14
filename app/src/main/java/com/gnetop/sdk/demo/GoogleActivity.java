@@ -36,7 +36,7 @@ public class GoogleActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.googleInit(this,true,true);
+        LoginEventManager.getInstance().googleInit(this,true,true);
         mTxtResult = findViewById(R.id.txt_result);
         mBtnStart = findViewById(R.id.btn_start);
         mBtnAuto = findViewById(R.id.btn_auto);
@@ -44,13 +44,13 @@ public class GoogleActivity extends AppCompatActivity {
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.googleLogin(GoogleActivity.this,false,false,mOnLoginListener);
+                LoginEventManager.getInstance().googleLogin(GoogleActivity.this,false,false,mOnLoginListener);
             }
         });
         mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.googleLogin(GoogleActivity.this, true, false, mOnLoginListener);
+                LoginEventManager.getInstance().googleLogin(GoogleActivity.this, true, false, mOnLoginListener);
 
             }
         });

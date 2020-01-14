@@ -35,7 +35,7 @@ public class OneStoreActivity extends AppCompatActivity {
 
 
     private void initView() {
-        LoginEventManager.oneStoreInit(this, true, true);
+        LoginEventManager.getInstance().oneStoreInit(this, true, true);
 
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);
@@ -43,7 +43,7 @@ public class OneStoreActivity extends AppCompatActivity {
         mBtnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.oneStoreRecharge(OneStoreActivity.this, mSKU, mGoodsID, params,
+                LoginEventManager.getInstance().oneStoreRecharge(OneStoreActivity.this, mSKU, mGoodsID, params,
                         0, mOnRechargeListener);
             }
         });

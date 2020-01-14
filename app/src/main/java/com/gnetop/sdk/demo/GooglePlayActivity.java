@@ -34,7 +34,7 @@ public class GooglePlayActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.gpInit(this, true, true, 0);
+        LoginEventManager.getInstance().gpInit(this, true, true, 0);
         final Map<String, Object> params = new WeakHashMap<>();
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);
@@ -42,7 +42,7 @@ public class GooglePlayActivity extends AppCompatActivity {
         mBtnPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.gpRecharge(GooglePlayActivity.this, mSKU, mGoodsID, params, 0,
+                LoginEventManager.getInstance().gpRecharge(GooglePlayActivity.this, mSKU, mGoodsID, params, 0,
                         mOnRechargeListener);
             }
         });

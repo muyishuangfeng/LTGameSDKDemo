@@ -37,11 +37,28 @@ public class LoginEventManager {
     private static final String mONEPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu9RPDbvVqM8XWqVc75JXccIXN1VS8XViRZzATUq62kkFIXCeo52LKzBCh3iWFQIvX3jqDhim4ESqHMezEx8CxaTq8NpNoQXutBNmOEl+/7HTUsZxI93wgn9+7pFMyoFlasqmVjCcM7zbbAx5G0bySsm98TFxTu16OGmO01JGonQIDAQAB";
     private static final String QQ_APP_ID = "1108097616";
 
+    private static LoginEventManager sInstance;
+
+
+    private LoginEventManager() {
+
+    }
+
+    public static LoginEventManager getInstance() {
+        if (sInstance == null) {
+            synchronized (LoginEventManager.class) {
+                if (sInstance == null) {
+                    sInstance = new LoginEventManager();
+                }
+            }
+        }
+        return sInstance;
+    }
 
     /**
      * 初始化google
      */
-    public static void googleInit(final Context context, final boolean isDebug, final boolean isTest) {
+    public void googleInit(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -71,7 +88,7 @@ public class LoginEventManager {
     /**
      * 初始化fb
      */
-    public static void fbInit(final Context context, final boolean isDebug, final boolean isTest) {
+    public void fbInit(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -102,8 +119,8 @@ public class LoginEventManager {
     /**
      * 初始化gp
      */
-    public static void gpInit(final Context context, final boolean isDebug, final boolean isTest,
-                              final int mTestPay) {
+    public void gpInit(final Context context, final boolean isDebug, final boolean isTest,
+                       final int mTestPay) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -136,7 +153,7 @@ public class LoginEventManager {
     /**
      * 初始化gp
      */
-    public static void guestInit(final Context context, final boolean isDebug, final boolean isTest) {
+    public void guestInit(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -165,7 +182,7 @@ public class LoginEventManager {
     /**
      * 初始化gp
      */
-    public static void qqInit(final Context context, final boolean isDebug, final boolean isTest) {
+    public void qqInit(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -195,7 +212,7 @@ public class LoginEventManager {
     /**
      * 初始化gp
      */
-    public static void phoneInit(final Context context, final boolean isDebug, final boolean isTest) {
+    public void phoneInit(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -224,7 +241,7 @@ public class LoginEventManager {
     /**
      * 初始化oneStore
      */
-    public static void oneStoreInit(final Context context, final boolean isDebug, final boolean isTest) {
+    public void oneStoreInit(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -263,8 +280,8 @@ public class LoginEventManager {
      * @param isStats          是否开启统计，true、开启，false、不开启
      * @param mOnLoginListener 结果回调
      */
-    public static void googleLogin(Activity context, boolean isLoginOut, boolean isStats,
-                                   OnLoginStateListener mOnLoginListener) {
+    public void googleLogin(Activity context, boolean isLoginOut, boolean isStats,
+                            OnLoginStateListener mOnLoginListener) {
         LoginObject object = new LoginObject();
         object.setmAdID(mAdID);
         object.setLTAppID(mLtAppID);
@@ -286,8 +303,8 @@ public class LoginEventManager {
      * @param isStats          是否开启统计，true、开启，false、不开启
      * @param mOnLoginListener 结果回调
      */
-    public static void fbLogin(Activity context, boolean isLoginOut, boolean isStats,
-                               OnLoginStateListener mOnLoginListener) {
+    public void fbLogin(Activity context, boolean isLoginOut, boolean isStats,
+                        OnLoginStateListener mOnLoginListener) {
         LoginObject object = new LoginObject();
         object.setFacebookAppID(mFacebookId);
         object.setmAdID(mAdID);
@@ -308,8 +325,8 @@ public class LoginEventManager {
      * @param isLoginOut       是否退出登录，true、退出登录，false、不退出登录
      * @param mOnLoginListener 结果回调
      */
-    public static void qqLogin(Activity context, boolean isLoginOut,
-                               OnLoginStateListener mOnLoginListener) {
+    public void qqLogin(Activity context, boolean isLoginOut,
+                        OnLoginStateListener mOnLoginListener) {
         LoginObject object = new LoginObject();
         object.setmAdID(mAdID);
         object.setLTAppID(mLtAppID);
@@ -329,8 +346,8 @@ public class LoginEventManager {
      * @param isStats          是否开启统计，true、开启，false、不开启
      * @param mOnLoginListener 结果回调
      */
-    public static void guestLogin(Activity context, String guestType, boolean isStats,
-                                  OnLoginStateListener mOnLoginListener) {
+    public void guestLogin(Activity context, String guestType, boolean isStats,
+                           OnLoginStateListener mOnLoginListener) {
         LoginObject object = new LoginObject();
         object.setmAdID(mAdID);
         object.setFacebookAppID(mFacebookId);
@@ -352,8 +369,8 @@ public class LoginEventManager {
      * @param loginType        登录类型：1、注册，2、登录、3、修改密码
      * @param mOnLoginListener 结果回调
      */
-    public static void phoneLogin(Activity context, String mPhone, String mPassword, String loginType,
-                                  OnLoginStateListener mOnLoginListener) {
+    public void phoneLogin(Activity context, String mPhone, String mPassword, String loginType,
+                           OnLoginStateListener mOnLoginListener) {
         LoginObject object = new LoginObject();
         object.setmAdID(mAdID);
         object.setLTAppID(mLtAppID);
@@ -376,9 +393,9 @@ public class LoginEventManager {
      *                            //@param isStats             是否开启统计，true、开启，false、不开启
      * @param mOnRechargeListener 回调
      */
-    public static void gpRecharge(Activity context, String sku, String mGoodsID,
-                                  Map<String, Object> params, int payType,
-                                  OnRechargeListener mOnRechargeListener) {
+    public void gpRecharge(Activity context, String sku, String mGoodsID,
+                           Map<String, Object> params, int payType,
+                           OnRechargeListener mOnRechargeListener) {
         RechargeObject result = new RechargeObject();
         result.setLTAppID(mLtAppID);
         result.setLTAppKey(mLtAppKey);
@@ -404,9 +421,9 @@ public class LoginEventManager {
      * @param payType             支付类型
      * @param mOnRechargeListener 回调
      */
-    public static void oneStoreRecharge(Activity context, String sku, String mGoodsID,
-                                        Map<String, Object> params, int payType,
-                                        OnRechargeListener mOnRechargeListener) {
+    public void oneStoreRecharge(Activity context, String sku, String mGoodsID,
+                                 Map<String, Object> params, int payType,
+                                 OnRechargeListener mOnRechargeListener) {
         RechargeObject result = new RechargeObject();
         result.setLTAppID(mLtAppID);
         result.setLTAppKey(mLtAppKey);
@@ -423,13 +440,14 @@ public class LoginEventManager {
     /**
      * 统计初始化
      */
-    public static void statsInit(Context context) {
+    public void statsInit(Context context) {
         FacebookEventManager.getInstance().start(context, mFacebookId);
     }
+
     /**
      * UI库统计初始化
      */
-    public static void uiStatsInit(Context context) {
+    public void uiStatsInit(Context context) {
         FacebookUIEventManager.getInstance().start(context, mFacebookId);
     }
 
@@ -442,8 +460,8 @@ public class LoginEventManager {
      * @param gpEnable     是否统计Google支付
      * @param guestEnable  是否统计游客登录
      */
-    public static void register(Context context, boolean fbEnable, boolean googleEnable,
-                                boolean gpEnable, boolean guestEnable) {
+    public void register(Context context, boolean fbEnable, boolean googleEnable,
+                         boolean gpEnable, boolean guestEnable) {
         FacebookEventManager.getInstance().registerBroadcast(context,
                 fbEnable, googleEnable, gpEnable, guestEnable);
 
@@ -452,7 +470,7 @@ public class LoginEventManager {
     /**
      * 反注册
      */
-    public static void unRegister(Context context) {
+    public void unRegister(Context context) {
         FacebookEventManager.getInstance().unRegisterBroadcast(context);
     }
 
@@ -465,8 +483,8 @@ public class LoginEventManager {
      * @param gpEnable     是否统计Google支付
      * @param guestEnable  是否统计游客登录
      */
-    public static void uiRegister(Context context, boolean fbEnable, boolean googleEnable,
-                                  boolean gpEnable, boolean guestEnable) {
+    public void uiRegister(Context context, boolean fbEnable, boolean googleEnable,
+                           boolean gpEnable, boolean guestEnable) {
         FacebookUIEventManager.getInstance().registerBroadcast(context,
                 fbEnable, googleEnable, gpEnable, guestEnable);
 
@@ -475,14 +493,14 @@ public class LoginEventManager {
     /**
      * UI库反注册
      */
-    public static void uiUnRegister(Context context) {
+    public void uiUnRegister(Context context) {
         FacebookUIEventManager.getInstance().unRegisterBroadcast(context);
     }
 
     /**
      * 获取手机信息
      */
-    public static void getDeviceInfo(final Context context, final boolean isDebug, final boolean isTest) {
+    public void getDeviceInfo(final Context context, final boolean isDebug, final boolean isTest) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {
@@ -520,7 +538,7 @@ public class LoginEventManager {
     /**
      * 补单
      */
-    public static void addOrder(final Activity context) {
+    public void addOrder(final Activity context) {
         Executors.newSingleThreadExecutor().execute(new Runnable() {
             @Override
             public void run() {

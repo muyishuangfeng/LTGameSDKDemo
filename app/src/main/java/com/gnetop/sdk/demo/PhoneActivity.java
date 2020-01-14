@@ -34,14 +34,14 @@ public class PhoneActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.phoneInit(this, true, true);
+        LoginEventManager.getInstance().phoneInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnChange = findViewById(R.id.btn_change);
         mBtnChange.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.phoneLogin(PhoneActivity.this, mPhone, mPassword, "3", mOnLoginListener);
+                LoginEventManager.getInstance().phoneLogin(PhoneActivity.this, mPhone, mPassword, "3", mOnLoginListener);
 
             }
         });
@@ -49,14 +49,14 @@ public class PhoneActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.phoneLogin(PhoneActivity.this, mPhone, mPassword, "2", mOnLoginListener);
+                LoginEventManager.getInstance().phoneLogin(PhoneActivity.this, mPhone, mPassword, "2", mOnLoginListener);
             }
         });
         mBtnRegister = findViewById(R.id.btn_register);
         mBtnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.phoneLogin(PhoneActivity.this, mPhone, mPassword, "1", mOnLoginListener);
+                LoginEventManager.getInstance().phoneLogin(PhoneActivity.this, mPhone, mPassword, "1", mOnLoginListener);
             }
         });
     }

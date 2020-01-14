@@ -32,7 +32,7 @@ public class FacebookActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.fbInit(this, true, true);
+        LoginEventManager.getInstance().fbInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnLoginOut = findViewById(R.id.btn_loginOut);
@@ -40,14 +40,14 @@ public class FacebookActivity extends AppCompatActivity {
         mBtnStart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.fbLogin(FacebookActivity.this, false,false, mOnLoginListener);
+                LoginEventManager.getInstance().fbLogin(FacebookActivity.this, false,false, mOnLoginListener);
 
             }
         });
         mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.fbLogin(FacebookActivity.this, true, false,mOnLoginListener);
+                LoginEventManager.getInstance().fbLogin(FacebookActivity.this, true, false,mOnLoginListener);
 
             }
         });

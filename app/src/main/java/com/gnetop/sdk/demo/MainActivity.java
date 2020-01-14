@@ -27,9 +27,9 @@ public class MainActivity extends AppCompatActivity {
      * 初始化控件
      */
     private void initView() {
-        LoginEventManager.addOrder(MainActivity.this);
+        LoginEventManager.getInstance().addOrder(MainActivity.this);
         //TODO:新增数据统计方法
-        LoginEventManager.uiStatsInit(this);
+        LoginEventManager.getInstance().uiStatsInit(this);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnGuest = findViewById(R.id.btn_guest);
@@ -95,14 +95,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //TODO:新增获取手机信息方法
-                LoginEventManager.getDeviceInfo(MainActivity.this, true, true);
+                LoginEventManager.getInstance().getDeviceInfo(MainActivity.this, true, true);
             }
         });
         mBtnGpInit = findViewById(R.id.btn_gp_init);
         mBtnGpInit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.addOrder(MainActivity.this);
+                LoginEventManager.getInstance().addOrder(MainActivity.this);
             }
         });
 
@@ -113,6 +113,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LoginEventManager.uiUnRegister(this);
+        LoginEventManager.getInstance().uiUnRegister(this);
     }
 }
