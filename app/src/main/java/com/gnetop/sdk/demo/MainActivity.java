@@ -8,11 +8,12 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.gnetop.sdk.demo.manager.LoginEventManager;
+import com.sdk.ltgame.ltgoogleplay.GooglePlayHelper;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    Button mBtnGoogle, mBtnFB, mBtnGP, mBtnGuest, mBtnQQ, mBtnPhone, mBtnOneStore, mBtnUI, mBtnDevice;
+    Button mBtnGoogle, mBtnFB, mBtnGP, mBtnGuest, mBtnQQ, mBtnPhone, mBtnOneStore, mBtnUI, mBtnDevice,mBtnGpInit;
     TextView mTxtResult;
 
     @Override
@@ -26,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
      * 初始化控件
      */
     private void initView() {
-        LoginEventManager.addOrder(this);
+        LoginEventManager.addOrder(MainActivity.this);
         //TODO:新增数据统计方法
         LoginEventManager.uiStatsInit(this);
 
@@ -95,6 +96,13 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //TODO:新增获取手机信息方法
                 LoginEventManager.getDeviceInfo(MainActivity.this, true, true);
+            }
+        });
+        mBtnGpInit = findViewById(R.id.btn_gp_init);
+        mBtnGpInit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginEventManager.addOrder(MainActivity.this);
             }
         });
 

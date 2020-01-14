@@ -383,7 +383,7 @@ public class LoginEventManager {
         result.setLTAppID(mLtAppID);
         result.setLTAppKey(mLtAppKey);
         result.setSku(sku);
-        result.setStats(false);
+        //result.setStats(false);
         result.setGoodsID(mGoodsID);
         result.setPublicKey(mGPPublicKey);
         result.setPackageID(AppUtil.getPackageName(context));
@@ -528,12 +528,14 @@ public class LoginEventManager {
                     mAdID = DeviceUtils.getGoogleAdId(context.getApplicationContext());
                     if (!TextUtils.isEmpty(mAdID)) {
                         LTGameOptions options = new LTGameOptions.Builder(context)
-                                .debug(false)
+                                .debug(true)
                                 .appID(mLtAppID)
                                 .appKey(mLtAppKey)
-                                .publicKey(mGPPublicKey)
                                 .isServerTest(true)
+                                .packageID(AppUtil.getPackageName(context))
+                                .setAdID(mAdID)
                                 .googlePlay(true)
+                                .requestCode(REQUEST_CODE)
                                 .build();
                         LTGameSdk.init(options);
                         GooglePlayHelper mHelper = new GooglePlayHelper(context, mGPPublicKey);
