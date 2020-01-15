@@ -15,7 +15,11 @@ import com.gentop.ltgame.ltgamesdkcore.manager.RechargeManager;
 import com.gentop.ltgame.ltgamesdkcore.model.LoginObject;
 import com.gentop.ltgame.ltgamesdkcore.model.RechargeObject;
 import com.gentop.ltgame.ltgamesdkcore.util.DeviceUtils;
+import com.gentop.ltsdk.common.model.ResultData;
 import com.gentop.ltsdk.facebook.FacebookUIEventManager;
+import com.gentop.ltsdk.ltsdkui.impl.OnReLoginInListener;
+import com.gentop.ltsdk.ltsdkui.impl.OnResultClickListener;
+import com.gentop.ltsdk.ltsdkui.manager.LoginUIManager;
 import com.sdk.ltgame.ltfacebook.FacebookEventManager;
 import com.sdk.ltgame.ltgoogleplay.GooglePlayHelper;
 import com.sdk.ltgame.ltnet.impl.OnUploadDeviceListener;
@@ -27,11 +31,13 @@ import java.util.concurrent.Executors;
 
 public class LoginEventManager {
 
-    private static String mAdID;
-    private static String mLtAppID = "28576";
-    private static String mLtAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
-    private static String mAuthID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
-    private static String mFacebookId = "2717734461592670";
+    private String mAdID;
+    private String mLtAppID = "28576";
+    private String mLtAppKey = "MJwk6bLlpGErRgLKkJPLP7VavHRGvTpA";
+    private String mAuthID = "443503959733-0vhjo7df08ahd9i7d5lj9mdtt7bahsbq.apps.googleusercontent.com";
+    private String mFacebookId = "2717734461592670";
+    private static final String mAgreementUrl = "http://www.baidu.com";
+    private static final String mProvacyUrl = "http://www.baidu.com";
     private static final int REQUEST_CODE = 0X01;
     private static final String mGPPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAleVlYQtKhvo+lb83j73kXGH8xAMhHcaAZoS22Bo3Jdujix9Ou5DjtUW3i6MIFqWEbnb9da50iH5IrxkkdJCcqzeYDdLk2Y3Gc+kyaw5ch4I//hjC2hh8nHgo8eWfrxSFce/DpNBeS1j4mWcjWZhYJtxheEUk8iTyXIVWHC8dCyifibs7z8wCXMhy3Q66Zym5GarAYjpuQsXTxHuOYUXakLWCwIXG8d8ihoRxweI7PtLpVyNU5FKgse42uouMRz6TgVotgu+NdamNyTH/CutQMPGeNXUj6FpHUDEWQhsRp27k0KsA8YWJDJBj4R9bJ5GDqD8XJo2y5V7/vy1OH4afkQIDAQAB";
     private static final String mONEPublicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu9RPDbvVqM8XWqVc75JXccIXN1VS8XViRZzATUq62kkFIXCeo52LKzBCh3iWFQIvX3jqDhim4ESqHMezEx8CxaTq8NpNoQXutBNmOEl+/7HTUsZxI93wgn9+7pFMyoFlasqmVjCcM7zbbAx5G0bySsm98TFxTu16OGmO01JGonQIDAQAB";
@@ -567,6 +573,60 @@ public class LoginEventManager {
         });
 
 
+    }
+
+    /**
+     * UI包登录
+     *
+     * @param context            上下文
+     * @param isServerTest       是否是测试服
+     * @param isLoginOut         是否退出登录
+     * @param mResultListener    登录结果回调
+     * @param mOnReLoginListener 自动登录接口
+     */
+    public void uiLogin(final Activity context, final boolean isServerTest, final boolean isLoginOut,
+                        final OnResultClickListener mResultListener, final OnReLoginInListener mOnReLoginListener) {
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mAdID = DeviceUtils.getGoogleAdId(context.getApplicationContext());
+                    if (!TextUtils.isEmpty(mAdID)) {
+                        LoginUIManager.getInstance().loginIn(context, isServerTest, mFacebookId, mAgreementUrl, mProvacyUrl, mAuthID,
+                                mLtAppID, mLtAppKey, mAdID, AppUtil.getPackageName(context), isLoginOut, mResultListener, mOnReLoginListener);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * UI包退出登录
+     *
+     * @param activity        上下文
+     * @param isServerTest    是否是测试服
+     * @param isLoginOut      是否退出登录
+     * @param mResultListener 登录结果回调
+     */
+    public void uiLoginOut(final Activity activity, final boolean isServerTest, final boolean isLoginOut, final OnResultClickListener mResultListener) {
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mAdID = DeviceUtils.getGoogleAdId(activity.getApplicationContext());
+                    if (!TextUtils.isEmpty(mAdID)) {
+                        LoginUIManager.getInstance().loginOut(activity, isServerTest, mFacebookId, mAgreementUrl, mProvacyUrl, mAuthID,
+                                mLtAppID, mLtAppKey, mAdID, AppUtil.getPackageName(activity), isLoginOut, mResultListener);
+                    }
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
     }
 
 

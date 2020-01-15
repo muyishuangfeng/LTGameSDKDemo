@@ -15,9 +15,9 @@ import com.gentop.ltsdk.common.util.DeviceUtils;
 import com.gentop.ltsdk.ltsdkui.impl.OnReLoginInListener;
 import com.gentop.ltsdk.ltsdkui.impl.OnResultClickListener;
 import com.gentop.ltsdk.ltsdkui.manager.LoginUIManager;
+import com.gnetop.sdk.demo.manager.LoginEventManager;
 
 import java.util.concurrent.Executors;
-
 
 
 public class UIActivity extends AppCompatActivity {
@@ -49,18 +49,14 @@ public class UIActivity extends AppCompatActivity {
         mBtnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(mAdID)) {
-                    login();
-                }
+                LoginEventManager.getInstance().uiLogin(UIActivity.this,true,false,mResultListener,mOnReLoginListener);
             }
         });
         mBtnLoginOut = findViewById(R.id.btn_loginOut);
         mBtnLoginOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!TextUtils.isEmpty(mAdID)) {
-                    loginOut();
-                }
+               LoginEventManager.getInstance().uiLoginOut(UIActivity.this,true,true,mResultListener);
 
             }
         });
@@ -72,7 +68,7 @@ public class UIActivity extends AppCompatActivity {
 
 
     private void login() {
-        LoginUIManager.getInstance().loginIn(this, true, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
+        LoginUIManager.getInstance().loginIn(this, false, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
                 LTAppID, LTAppKey, mAdID, mPackageID, false, new OnResultClickListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
@@ -92,7 +88,7 @@ public class UIActivity extends AppCompatActivity {
     }
 
     private void loginOut() {
-        LoginUIManager.getInstance().loginOut(this, true, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
+        LoginUIManager.getInstance().loginOut(this, false, mFacebookId, mAgreementUrl, mProvacyUrl, clientID,
                 LTAppID, LTAppKey, mAdID, mPackageID, true, new OnResultClickListener() {
                     @SuppressLint("SetTextI18n")
                     @Override
@@ -116,4 +112,28 @@ public class UIActivity extends AppCompatActivity {
             }
         });
     }
+
+    /**
+     * 登录结果
+     */
+    OnResultClickListener mResultListener = new OnResultClickListener() {
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void onResult(ResultData result) {
+            mTxtResult.setText("=====登录成功:\n" + result.toString());
+            Log.e("TAG", result.toString());
+        }
+    };
+    /**
+     * 自动登陆
+     */
+    OnReLoginInListener mOnReLoginListener = new OnReLoginInListener() {
+
+        @SuppressLint("SetTextI18n")
+        @Override
+        public void OnLoginResult(ResultData result) {
+            mTxtResult.setText("OnReLoginInListener=====结果:\n" + result.toString());
+            Log.e("TAG", result.toString());
+        }
+    };
 }
