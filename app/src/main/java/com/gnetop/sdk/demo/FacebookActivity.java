@@ -32,7 +32,7 @@ public class FacebookActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.getInstance().fbInit(this, true, true);
+        //LoginEventManager.getInstance().fbInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnLoginOut = findViewById(R.id.btn_loginOut);

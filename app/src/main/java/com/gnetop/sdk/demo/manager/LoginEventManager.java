@@ -62,6 +62,48 @@ public class LoginEventManager {
     }
 
     /**
+     * 全局初始化
+     * @param context 上下文
+     * @param isDebug 是否开启debug模式
+     * @param isTest 是否是测试服
+     */
+    public void init(final Context context, final boolean isDebug, final boolean isTest) {
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mAdID = DeviceUtils.getGoogleAdId(context.getApplicationContext());
+                    if (!TextUtils.isEmpty(mAdID)) {
+                        LTGameOptions options = new LTGameOptions.Builder(context)
+                                .debug(isDebug)//是否开启debug调试
+                                .isServerTest(isTest) //是否是测试服
+                                .appID(mLtAppID)//设置乐推AppID
+                                .appKey(mLtAppKey)//设置乐推AppKey
+                                .setAdID(mAdID)//设置ADID
+                                .google(mAuthID)//设置Google的AuthID
+                                .packageID(AppUtil.getPackageName(context))//设置包名
+                                .facebook(mFacebookId)//设置Facebook的AppID
+                                .facebookEnable()//是否开启Facebook
+                                .googlePlay(true)//是否开启Google支付
+                                .guestEnable(true)//是否开启游客登录
+                                .qq(QQ_APP_ID)//设置QQ的AppID
+                                .setQQEnable(true)//是否开启QQ登录
+                                .goodsType("inapp")//
+                                .oneStore()//是否开启OneStore支付
+                                .phoneEnable()//是否开启手机登录
+                                .requestCode(REQUEST_CODE)//回调
+                                .build();
+                        LTGameSdk.init(options);
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    /**
      * 初始化google
      */
     public void googleInit(final Context context, final boolean isDebug, final boolean isTest) {

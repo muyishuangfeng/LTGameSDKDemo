@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
      * 初始化控件
      */
     private void initView() {
+        LoginEventManager.getInstance().init(this,true,true);
         LoginEventManager.getInstance().addOrder(MainActivity.this);
         //TODO:新增数据统计方法
         LoginEventManager.getInstance().uiStatsInit(this);

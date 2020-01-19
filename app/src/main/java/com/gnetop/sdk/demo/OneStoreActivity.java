@@ -35,7 +35,7 @@ public class OneStoreActivity extends AppCompatActivity {
 
 
     private void initView() {
-        LoginEventManager.getInstance().oneStoreInit(this, true, true);
+        //LoginEventManager.getInstance().oneStoreInit(this, true, true);
 
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);

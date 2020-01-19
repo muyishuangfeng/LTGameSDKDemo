@@ -36,7 +36,7 @@ public class GoogleActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.getInstance().googleInit(this,true,true);
+        //LoginEventManager.getInstance().googleInit(this,true,true);
         mTxtResult = findViewById(R.id.txt_result);
         mBtnStart = findViewById(R.id.btn_start);
         mBtnAuto = findViewById(R.id.btn_auto);

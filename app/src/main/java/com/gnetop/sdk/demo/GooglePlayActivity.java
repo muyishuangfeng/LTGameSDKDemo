@@ -34,7 +34,7 @@ public class GooglePlayActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.getInstance().gpInit(this, true, false, 0);
+        //LoginEventManager.getInstance().gpInit(this, true, false, 0);
         final Map<String, Object> params = new WeakHashMap<>();
         params.put("key", "123");
         mTxtResult = findViewById(R.id.txt_result);

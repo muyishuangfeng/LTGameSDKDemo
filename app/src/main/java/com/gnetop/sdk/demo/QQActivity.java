@@ -30,7 +30,7 @@ public class QQActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        LoginEventManager.getInstance().qqInit(this, true, true);
+        //LoginEventManager.getInstance().qqInit(this, true, true);
 
         mTxtResult = findViewById(R.id.txt_result);
         mBtnLoginOut = findViewById(R.id.btn_loginOut);
