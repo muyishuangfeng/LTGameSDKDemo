@@ -3,12 +3,13 @@ package com.gnetop.sdk.demo;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.gnetop.sdk.demo.manager.LoginEventManager;
-import com.sdk.ltgame.ltgoogleplay.GooglePlayHelper;
+import com.gnetop.sdk.demo.util.ConvertUtil;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -103,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
         mBtnGpInit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginEventManager.getInstance().addOrder(MainActivity.this);
+               // LoginEventManager.getInstance().addOrder(MainActivity.this);
+
+            Log.e("TAG",
+                    ConvertUtil.convert("77:42:AA:91:B2:B0:E4:B8:69:70:1C:A2:2D:A6:A5:B9:F0:50:7F:CF",true));
+
             }
         });
 
